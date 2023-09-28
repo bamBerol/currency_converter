@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Layout from "./layout/Layout";
+import style from "./App.module.css";
 
 function App() {
+  const [currencies, setCurrencies] = useState([]);
+  useEffect(() => {
+    axios.get(`http://api.nbp.pl/api/exchangerates/tables/a/`).then((res) => {
+      if (res.status === 200) {
+        setCurrencies(res.data[0].rates);
+      }
+    });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${style.app} d-flex flex-column container-lg`}>
+      <Layout currencies={currencies} />
     </div>
   );
 }

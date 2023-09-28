@@ -1,0 +1,13 @@
+.main {
+  width: 100%;
+  flex-grow: 1;
+}
+.converter {
+  width: 100%;
+}
+.listItem img {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0.5px solid black;
+  border-radius: 50%;
+}
