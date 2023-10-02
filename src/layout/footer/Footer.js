@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer
       className={`${style.footer} d-flex justify-content-center align-items-center`}>
-      <p>{`created by devTro ${year}`}</p>
+      <p>&copy; devTro {year} All Rights Reserved.</p>
     </footer>
   );
 };

@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   return (
-    <div className={`${style.app} d-flex flex-column container-lg`}>
+    <div className={`${style.app} d-flex flex-column container-xl`}>
       <Layout currencies={currencies} />
     </div>
   );
