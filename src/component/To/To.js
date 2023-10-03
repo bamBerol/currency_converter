@@ -1,10 +1,11 @@
+import Chart from "../Chart/Chart";
 import style from "./To.module.css";
 
 const To = (props) => {
   return (
     <>
       <div className={`${style.to}`}>
-        <label htmlFor="from">From:</label>
+        <label htmlFor="from">Otrzymam:</label>
         <div id="from" className="dropdown">
           <button
             className={`${style.buttonDropdown}  dropdown-toggle d-flex align-items-center justify-content-between`}
@@ -26,12 +27,12 @@ const To = (props) => {
           <ul className={`${style.currencyList} dropdown-menu menu`}>
             {props.currencyList}
           </ul>
-          <input
-            type="number"
-            className={`${style.inputFrom}`}
-            onChange={props.handleInputChange}
-            value={props.inputValue}
-          />
+          <div className={`${style.inputFrom}`}>
+            <p>{props.toInputValue}</p>
+          </div>
+        </div>
+        <div className={`${style.chart}`}>
+          <Chart currency={props.currency} value={props.value} />
         </div>
       </div>
     </>

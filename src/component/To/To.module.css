@@ -30,16 +30,16 @@
 .inputFrom {
   width: 100%;
   padding: 5rem 1rem;
-  padding-bottom: 0.5rem;
-  font-size: 6rem;
+  font-size: 4rem;
   border: none;
-  /*border-bottom: 1px solid #6c757d;*/
 }
-.inputFrom:focus {
-  outline: none;
+.inputFrom p {
+  margin: 0;
 }
-input::-webkit-outer-spin-button,
+.inputFrom input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+.chart {
 }

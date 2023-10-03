@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import From from "../../component/From/From";
 import To from "../../component/To/To";
 import style from "./Main.module.css";
@@ -11,7 +11,7 @@ const Main = ({ currencies }) => {
   const [flag, setFlag] = useState("");
   const [toFlag, setToFlag] = useState("");
   const [inputValue, setInputValue] = useState("");
-  const [toInputValue, setToInputValue] = useState("");
+  const [toInputValue, setToInputValue] = useState(0);
 
   const handleCurrencySelection = (e) => {
     let component = e.currentTarget.getAttribute("data-component-name");
@@ -38,10 +38,23 @@ const Main = ({ currencies }) => {
       }
     }
   };
-
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
+
+  const handleCurrencyConversion = () => {
+    if (value > 0 && toValue > 0 && inputValue > 0) {
+      const quantity = (Number(value) / Number(toValue)) * Number(inputValue);
+
+      setToInputValue(quantity.toFixed(2));
+    } else {
+      setToInputValue("");
+    }
+  };
+
+  useEffect(() => {
+    handleCurrencyConversion();
+  }, [inputValue, value, toValue]);
 
   const currencyList = (component) =>
     currencies.map((currency) => {
@@ -50,7 +63,10 @@ const Main = ({ currencies }) => {
           <li
             key={currency.code}
             value={currency.mid}
-            onClick={(event) => handleCurrencySelection(event, component)}
+            onClick={(event) => {
+              handleCurrencySelection(event, component);
+              handleCurrencyConversion();
+            }}
             data-component-name={component}
             className={`${style.listItem} dropdown-item d-flex align-items-center justify-content-between`}>
             <div>
@@ -69,8 +85,12 @@ const Main = ({ currencies }) => {
           <li
             key={currency.code}
             value={currency.mid}
-            onClick={handleCurrencySelection}
-            className="dropdown-item">
+            onClick={(event) => {
+              handleCurrencySelection(event, component);
+              handleCurrencyConversion();
+            }}
+            data-component-name={component}
+            className={`${style.listItem} dropdown-item`}>
             {currency.code} - {currency.currency}
           </li>
         );
@@ -79,6 +99,7 @@ const Main = ({ currencies }) => {
 
   const fromProps = {
     handleInputChange,
+    handleCurrencyConversion,
     currencyList: currencyList("from"),
     currency,
     value,
@@ -91,6 +112,8 @@ const Main = ({ currencies }) => {
     currencyList: currencyList("to"),
     toCurrency,
     toValue,
+    currency,
+    value,
     toFlag,
     toInputValue,
   };
@@ -99,7 +122,7 @@ const Main = ({ currencies }) => {
     <main
       className={`${style.main} d-flex align-items-center justify-content-center`}>
       <div
-        className={`${style.converter} d-flex flex-row justify-content-evenly`}>
+        className={`${style.converter} d-flex flex-column flex-lg-row justify-content-evenly`}>
         <From {...fromProps} />
         <To {...toProps} />
       </div>

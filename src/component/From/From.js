@@ -1,10 +1,18 @@
+import { useRef, useEffect } from "react";
+import CurrentRate from "../CurrentRate/CurrentRate";
 import style from "./From.module.css";
 
 const From = (props) => {
+  const fromInputRef = useRef();
+
+  useEffect(() => {
+    fromInputRef.current.focus();
+  }, []);
+
   return (
     <>
       <div className={`${style.from}`}>
-        <label htmlFor="from">From:</label>
+        <label htmlFor="from">Mam:</label>
         <div id="from" className="dropdown">
           <button
             className={`${style.buttonDropdown}  dropdown-toggle d-flex align-items-center justify-content-between`}
@@ -27,11 +35,19 @@ const From = (props) => {
             {props.currencyList}
           </ul>
           <input
+            ref={fromInputRef}
             type="number"
+            placeholder="Wpisz kwotę"
             className={`${style.inputFrom}`}
-            onChange={props.handleInputChange}
+            onChange={(e) => {
+              props.handleInputChange(e);
+              props.handleCurrencyConversion();
+            }}
             value={props.inputValue}
           />
+        </div>
+        <div className={`currentStats`}>
+          <CurrentRate currency={props.currency} value={props.value} />
         </div>
       </div>
     </>
