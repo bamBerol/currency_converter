@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import CurrentRate from "../CurrentRate/CurrentRate";
+import Chart from "../Chart/Chart";
 import style from "./From.module.css";
 
 const From = (props) => {
@@ -11,7 +12,8 @@ const From = (props) => {
 
   return (
     <>
-      <div className={`${style.from}`}>
+      <div
+        className={`${style.from} d-flex flex-column justify-content-center`}>
         <label htmlFor="from">Mam:</label>
         <div id="from" className="dropdown">
           <button
@@ -46,9 +48,14 @@ const From = (props) => {
             value={props.inputValue}
           />
         </div>
-        <div className={`currentStats`}>
-          <CurrentRate currency={props.currency} value={props.value} />
-        </div>
+        {props.isActive ? (
+          <div className={`${style.stats}`} /*onClick={handleClick}*/>
+            <CurrentRate currency={props.currency} value={props.value} />
+            <Chart currency={props.currency} />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

@@ -28,13 +28,19 @@ const CurrentRate = (props) => {
 
   return (
     <>
-      <div className="d-flex justify-content-between">
+      <div
+        className={`${style.containerCurrentRate} d-flex justify-content-between`}>
         <div
           className={`${style.currentRate} ${
             !props.value ? "" : style.active
           }`}>
           <p>{`Aktualny kurs 1 ${name} do PLN`} </p>
-          <h3>{Number(props.value)}</h3>
+          <h3
+            className={`${
+              percent > 0 ? style.green : percent < 0 ? style.red : style.same
+            }`}>
+            {Number(props.value)}
+          </h3>
         </div>
         <div
           className={`${style.currentChange} ${
@@ -43,7 +49,10 @@ const CurrentRate = (props) => {
           <p>{`Zmiana ${name}`}</p>
           <div
             className={`${style.currentChangeDetail} d-flex flex-row justify-content-center`}>
-            <h3 className={`${percent > 0 ? style.green : style.red}`}>
+            <h3
+              className={`${
+                percent > 0 ? style.green : percent < 0 ? style.red : style.same
+              }`}>
               {`${percent.toFixed(2)} %`}
             </h3>
           </div>

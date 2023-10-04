@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import From from "../../component/From/From";
 import To from "../../component/To/To";
+import ArrowsBtn from "../../component/ArrowsBtn/ArrowsBtn";
+import FullScreenChart from "../../component/FullScreenChart/FullScreenChart";
 import style from "./Main.module.css";
 
 const Main = ({ currencies }) => {
   const [currency, setCurrency] = useState("Wybierz walutę");
-  const [toCurrency, setToCurrency] = useState("Wybierz walutę");
   const [value, setValue] = useState("");
-  const [toValue, setToValue] = useState("");
   const [flag, setFlag] = useState("");
-  const [toFlag, setToFlag] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [toCurrency, setToCurrency] = useState("Wybierz walutę");
+  const [toValue, setToValue] = useState("");
+  const [toFlag, setToFlag] = useState("");
   const [toInputValue, setToInputValue] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  const [toIsActive, setToIsActive] = useState(false);
+  const [chartIsClicked, setChartIsClicked] = useState(false);
+  const [selectedComponent, setSelectedComponent] = useState("");
 
   const handleCurrencySelection = (e) => {
     let component = e.currentTarget.getAttribute("data-component-name");
@@ -38,6 +44,7 @@ const Main = ({ currencies }) => {
       }
     }
   };
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
@@ -48,8 +55,43 @@ const Main = ({ currencies }) => {
 
       setToInputValue(quantity.toFixed(2));
     } else {
-      setToInputValue("");
+      setToInputValue("0.00");
     }
+  };
+
+  const handleIsActive = (component) => {
+    if (component === "from") {
+      if (isActive === false) {
+        return setIsActive(true);
+      }
+    } else if (component === "to") {
+      if (toIsActive === false) {
+        return setToIsActive(true);
+      }
+    }
+  };
+
+  const handleSwitch = () => {
+    if (value.length !== 0 && toValue.length !== 0) {
+      let cur = currency;
+      let val = value;
+      let flg = flag;
+
+      setCurrency(toCurrency);
+      setValue(toValue);
+      setFlag(toFlag);
+      setToCurrency(cur);
+      setToValue(val);
+      setToFlag(flg);
+    } else {
+      alert("musisz wybrać obie waluty");
+    }
+  };
+
+  const handleClick = (component) => {
+    console.log("klik klik", component);
+    setChartIsClicked(true);
+    setSelectedComponent(component);
   };
 
   useEffect(() => {
@@ -66,6 +108,7 @@ const Main = ({ currencies }) => {
             onClick={(event) => {
               handleCurrencySelection(event, component);
               handleCurrencyConversion();
+              handleIsActive(component);
             }}
             data-component-name={component}
             className={`${style.listItem} dropdown-item d-flex align-items-center justify-content-between`}>
@@ -105,27 +148,37 @@ const Main = ({ currencies }) => {
     value,
     flag,
     inputValue,
+    isActive,
   };
 
   const toProps = {
     handleInputChange,
-    currencyList: currencyList("to"),
+    handleClick,
     toCurrency,
     toValue,
-    currency,
-    value,
     toFlag,
     toInputValue,
+    toIsActive,
+    currencyList: currencyList("to"),
   };
 
   return (
     <main
-      className={`${style.main} d-flex align-items-center justify-content-center`}>
+      className={`${style.main} d-flex align-items-stretch justify-content-center`}>
       <div
-        className={`${style.converter} d-flex flex-column flex-lg-row justify-content-evenly`}>
+        className={`${style.converter} d-flex flex-column flex-lg-row justify-content-between`}>
         <From {...fromProps} />
+        <ArrowsBtn switch={handleSwitch} />
         <To {...toProps} />
       </div>
+      {chartIsClicked ? (
+        <FullScreenChart
+          selectedComponent={selectedComponent}
+          currencyName={selectedComponent === "from" ? currency : toCurrency}
+        />
+      ) : (
+        ""
+      )}
     </main>
   );
 };

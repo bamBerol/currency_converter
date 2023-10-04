@@ -1,10 +1,11 @@
+import CurrentRate from "../CurrentRate/CurrentRate";
 import Chart from "../Chart/Chart";
 import style from "./To.module.css";
 
 const To = (props) => {
   return (
     <>
-      <div className={`${style.to}`}>
+      <div className={`${style.to} d-flex flex-column justify-content-center`}>
         <label htmlFor="from">Otrzymam:</label>
         <div id="from" className="dropdown">
           <button
@@ -31,9 +32,16 @@ const To = (props) => {
             <p>{props.toInputValue}</p>
           </div>
         </div>
-        <div className={`${style.chart}`}>
-          <Chart currency={props.currency} value={props.value} />
-        </div>
+        {props.toIsActive ? (
+          <div
+            className={`${style.stats}`}
+            onClick={() => props.handleClick("to")}>
+            <CurrentRate currency={props.toCurrency} value={props.toValue} />
+            <Chart currency={props.toCurrency} />
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

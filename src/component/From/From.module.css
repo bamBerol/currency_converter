@@ -1,10 +1,12 @@
 .from {
-  width: 50%;
+  padding: 1rem;
+  flex: 1;
 }
 .buttonDropdown {
   width: 100%;
   height: 3.125rem;
   padding: 0.5rem 1rem;
+  padding-left: 0;
   font-size: 1rem;
   background-color: white;
   border: none;

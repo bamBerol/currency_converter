@@ -1,3 +1,6 @@
+.containerCurrentRate {
+  margin-bottom: 2.5rem;
+}
 .currentRate,
 .currentChange {
   opacity: 0;
@@ -19,8 +22,11 @@
   transition: all 0.4s;
 }
 .green {
-  color: green;
+  color: rgb(0, 117, 0);
 }
 .red {
-  color: red;
+  color: rgb(194, 2, 2);
+}
+.same {
+  color: black;
 }
