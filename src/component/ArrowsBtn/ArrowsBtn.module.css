@@ -1,7 +1,14 @@
-.arrowsContainer {
-}
 .arrows {
   width: 2rem;
   height: 2rem;
   cursor: pointer;
+  transform: rotateY(0deg);
+  transition: transform 0.8s;
+}
+.arrowsClicked {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  transform: rotateY(-180deg);
+  transition: transform 0.8s;
 }

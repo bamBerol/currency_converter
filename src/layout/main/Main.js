@@ -13,11 +13,12 @@ const Main = ({ currencies }) => {
   const [toCurrency, setToCurrency] = useState("Wybierz walutę");
   const [toValue, setToValue] = useState("");
   const [toFlag, setToFlag] = useState("");
-  const [toInputValue, setToInputValue] = useState(0);
+  const [toInputValue, setToInputValue] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [toIsActive, setToIsActive] = useState(false);
   const [chartIsClicked, setChartIsClicked] = useState(false);
   const [selectedComponent, setSelectedComponent] = useState("");
+  const [arrowsClicked, setArrowsClicked] = useState(false);
 
   const handleCurrencySelection = (e) => {
     let component = e.currentTarget.getAttribute("data-component-name");
@@ -72,6 +73,8 @@ const Main = ({ currencies }) => {
   };
 
   const handleSwitch = () => {
+    setArrowsClicked(!arrowsClicked);
+
     if (value.length !== 0 && toValue.length !== 0) {
       let cur = currency;
       let val = value;
@@ -89,8 +92,7 @@ const Main = ({ currencies }) => {
   };
 
   const handleClick = (component) => {
-    console.log("klik klik", component);
-    setChartIsClicked(true);
+    setChartIsClicked(!chartIsClicked);
     setSelectedComponent(component);
   };
 
@@ -143,12 +145,13 @@ const Main = ({ currencies }) => {
   const fromProps = {
     handleInputChange,
     handleCurrencyConversion,
-    currencyList: currencyList("from"),
+    handleClick,
     currency,
     value,
     flag,
     inputValue,
     isActive,
+    currencyList: currencyList("from"),
   };
 
   const toProps = {
@@ -168,12 +171,12 @@ const Main = ({ currencies }) => {
       <div
         className={`${style.converter} d-flex flex-column flex-lg-row justify-content-between`}>
         <From {...fromProps} />
-        <ArrowsBtn switch={handleSwitch} />
+        <ArrowsBtn switch={handleSwitch} arrowsClicked={arrowsClicked} />
         <To {...toProps} />
       </div>
       {chartIsClicked ? (
         <FullScreenChart
-          selectedComponent={selectedComponent}
+          handleClick={handleClick}
           currencyName={selectedComponent === "from" ? currency : toCurrency}
         />
       ) : (

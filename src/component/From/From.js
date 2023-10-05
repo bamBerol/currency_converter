@@ -13,9 +13,9 @@ const From = (props) => {
   return (
     <>
       <div
-        className={`${style.from} d-flex flex-column justify-content-center`}>
-        <label htmlFor="from">Mam:</label>
+        className={`${style.from} d-flex flex-column justify-content-between`}>
         <div id="from" className="dropdown">
+          <label htmlFor="from">Mam:</label>
           <button
             className={`${style.buttonDropdown}  dropdown-toggle d-flex align-items-center justify-content-between`}
             type="button"
@@ -49,12 +49,17 @@ const From = (props) => {
           />
         </div>
         {props.isActive ? (
-          <div className={`${style.stats}`} /*onClick={handleClick}*/>
+          <div
+            className={`${style.stats}`}
+            onClick={() => props.handleClick("from")}>
             <CurrentRate currency={props.currency} value={props.value} />
-            <Chart currency={props.currency} />
+            <Chart currency={props.currency} selectedComponent={null} />
           </div>
         ) : (
-          ""
+          <div
+            className={`${style.info} d-flex text-center align-items-center`}>
+            <p>Po wybraniu waluty w tym miejscu będą pokazane statystyki</p>
+          </div>
         )}
       </div>
     </>

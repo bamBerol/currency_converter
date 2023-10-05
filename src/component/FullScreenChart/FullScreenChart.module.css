@@ -5,3 +5,17 @@
   height: 100%;
   z-index: 1;
 }
+.backBtn {
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+}
+.backBtn p {
+  margin: 0;
+}
+.backBtn:hover {
+  background-image: linear-gradient(to top, #2450b70a, #2451b7);
+  color: white;
+  border-bottom: none;
+  cursor: pointer;
+}

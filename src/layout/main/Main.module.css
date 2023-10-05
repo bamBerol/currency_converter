@@ -2,6 +2,7 @@
   width: 100%;
   position: relative;
   flex-grow: 1;
+  overflow: hidden;
 }
 .converter {
   width: 100%;

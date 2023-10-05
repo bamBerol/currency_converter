@@ -7,7 +7,9 @@ const ArrowsBtn = (props) => {
         className={`${style.arrowsContainer} d-flex align-items-center justify-content-center`}>
         <svg
           onClick={props.switch}
-          className={`${style.arrows} bi bi-arrow-left-right`}
+          className={`${
+            props.arrowsClicked ? style.arrowsClicked : style.arrows
+          } bi bi-arrow-left-right`}
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 16 16">
