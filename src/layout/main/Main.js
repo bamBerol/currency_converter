@@ -47,7 +47,13 @@ const Main = ({ currencies }) => {
   };
 
   const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+    const regex = /[^0-9]/g;
+
+    if (!regex.test(e.target.value)) {
+      setInputValue(e.target.value);
+    } else {
+      e.preventDefault();
+    }
   };
 
   const handleCurrencyConversion = () => {
@@ -102,6 +108,9 @@ const Main = ({ currencies }) => {
 
   const currencyList = (component) =>
     currencies.map((currency) => {
+      if (currency.currency === "rand (Republika Południowej Afryki)") {
+        return (currency.currency = "rand (RPA)");
+      }
       if (currency.code !== "XDR") {
         return (
           <li
@@ -178,6 +187,7 @@ const Main = ({ currencies }) => {
         <FullScreenChart
           handleClick={handleClick}
           currencyName={selectedComponent === "from" ? currency : toCurrency}
+          chartIsClicked={chartIsClicked}
         />
       ) : (
         ""

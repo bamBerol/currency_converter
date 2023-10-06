@@ -53,7 +53,9 @@ const CurrentRate = (props) => {
               className={`${
                 percent > 0 ? style.green : percent < 0 ? style.red : style.same
               }`}>
-              {`${percent.toFixed(2)} %`}
+              {percent > 0
+                ? `+${percent.toFixed(2)} %`
+                : `${percent.toFixed(2)} %`}
             </h3>
           </div>
         </div>

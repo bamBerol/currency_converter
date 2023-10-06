@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div
-      className={`${style.app} d-flex flex-column container-xl justify-content-center align-items-center`}>
+      className={`${style.app} d-lg-flex justify-content-lg-center align-items-lg-center`}>
       <Layout currencies={currencies} />
     </div>
   );

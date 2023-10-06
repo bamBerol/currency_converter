@@ -1,11 +1,11 @@
 import { useRef, useEffect } from "react";
 import CurrentRate from "../CurrentRate/CurrentRate";
 import Chart from "../Chart/Chart";
+import Info from "../Info/Info";
 import style from "./From.module.css";
 
 const From = (props) => {
   const fromInputRef = useRef();
-
   useEffect(() => {
     fromInputRef.current.focus();
   }, []);
@@ -38,7 +38,7 @@ const From = (props) => {
           </ul>
           <input
             ref={fromInputRef}
-            type="number"
+            type="text"
             placeholder="Wpisz kwotę"
             className={`${style.inputFrom}`}
             onChange={(e) => {
@@ -56,10 +56,7 @@ const From = (props) => {
             <Chart currency={props.currency} selectedComponent={null} />
           </div>
         ) : (
-          <div
-            className={`${style.info} d-flex text-center align-items-center`}>
-            <p>Po wybraniu waluty w tym miejscu będą pokazane statystyki</p>
-          </div>
+          <Info />
         )}
       </div>
     </>

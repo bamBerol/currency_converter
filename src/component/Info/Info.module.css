@@ -1,0 +1,9 @@
+.info {
+  padding: 0 2rem;
+  flex-grow: 1;
+  color: #b0b0b4;
+  font-weight: 300;
+}
+.info p {
+  margin: 0;
+}

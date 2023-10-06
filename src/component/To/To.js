@@ -1,5 +1,6 @@
 import CurrentRate from "../CurrentRate/CurrentRate";
 import Chart from "../Chart/Chart";
+import Info from "../Info/Info";
 import style from "./To.module.css";
 
 const To = (props) => {
@@ -40,10 +41,7 @@ const To = (props) => {
             <Chart currency={props.toCurrency} selectedComponent={null} />
           </div>
         ) : (
-          <div
-            className={`${style.info} d-flex text-center align-items-center justify-content-center`}>
-            Po wybraniu waluty w tym miejscu będą pokazane statystyki
-          </div>
+          <Info />
         )}
       </div>
     </>

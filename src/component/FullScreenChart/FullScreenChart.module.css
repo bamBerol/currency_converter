@@ -5,17 +5,41 @@
   height: 100%;
   z-index: 1;
 }
+.title {
+  transform: translateX(300%);
+  transition: transform 0.6s ease-in-out;
+}
+.bigChartContent {
+  width: 100%;
+  height: fit-content;
+  transform: translateX(-100%);
+  transition: transform 0.6s ease-in-out;
+}
+.titleOn {
+  transform: translateX(0);
+}
+.chartOn {
+  transform: translateX(0);
+}
 .backBtn {
+  display: inline-block;
   padding: 0.5rem 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.5rem;
 }
 .backBtn p {
   margin: 0;
 }
+.backBtn::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #2451b7;
+  transition: width 0.4s ease-in-out;
+}
+.backBtn:hover::after {
+  width: 100%;
+}
 .backBtn:hover {
-  background-image: linear-gradient(to top, #2450b70a, #2451b7);
-  color: white;
-  border-bottom: none;
+  color: #2451b7;
   cursor: pointer;
 }

@@ -1,8 +1,13 @@
 .layout {
-  height: 80%;
   width: 100%;
-  padding: 1rem 2rem;
-  border-radius: 2rem;
+  padding: 2rem 0;
   background-color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+@media (min-width: 992px) {
+  .layout {
+    height: 80%;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+  }
 }

@@ -1,8 +1,31 @@
 .title {
   padding: 1rem 2rem;
-  padding-top: 0;
+  padding-bottom: 3rem;
 }
-.yen {
+.titleText {
+  margin: 0 1rem;
+}
+.yen,
+.euro {
   width: 2rem;
   height: 2rem;
+}
+.up,
+.down {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.yen,
+.up {
+  color: rgb(0, 117, 0);
+}
+.euro,
+.down {
+  color: rgb(194, 2, 2);
+}
+
+@media (min-width: 992px) {
+  .title {
+    padding-top: 0;
+  }
 }

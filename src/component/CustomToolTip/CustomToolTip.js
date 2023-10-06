@@ -13,7 +13,7 @@ const CustomToolTip = ({ active, payload, label }) => {
       <div
         className={`${style.toolTip} d-flex flex-column align-items-center text-center`}>
         <h6>{dateFormatter()}</h6>
-        <p>{payload[0].payload.mid.toFixed(3)}</p>
+        <p>{payload[0].payload.mid.toFixed(5)}</p>
       </div>
     );
   }
