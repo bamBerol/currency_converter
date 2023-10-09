@@ -1,7 +1,15 @@
+.arrowsContainer {
+  padding: 1rem;
+  margin: 2rem 0;
+  color: #ffffff;
+  background-color: #2451b7;
+  border: 1px solid #2451b7;
+  border-radius: 2rem;
+  cursor: pointer;
+}
 .arrows {
   width: 2rem;
   height: 2rem;
-  cursor: pointer;
   transform: rotateY(0deg);
   transition: transform 0.8s;
 }
@@ -11,4 +19,11 @@
   cursor: pointer;
   transform: rotateY(-180deg);
   transition: transform 0.8s;
+}
+@media (min-width: 992px) {
+  .arrowsContainer {
+    border: none;
+    color: #1d1b1b;
+    background-color: white;
+  }
 }

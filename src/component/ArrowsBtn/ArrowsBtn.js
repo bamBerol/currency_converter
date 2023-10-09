@@ -4,9 +4,9 @@ const ArrowsBtn = (props) => {
   return (
     <>
       <div
+        onClick={props.switch}
         className={`${style.arrowsContainer} d-flex align-items-center justify-content-center`}>
         <svg
-          onClick={props.switch}
           className={`${
             props.arrowsClicked ? style.arrowsClicked : style.arrows
           } bi bi-arrow-left-right`}

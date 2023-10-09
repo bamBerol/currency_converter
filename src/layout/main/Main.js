@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import From from "../../component/From/From";
-import To from "../../component/To/To";
+import CurrencySection from "../../component/CurrencySection/CurrencySection";
 import ArrowsBtn from "../../component/ArrowsBtn/ArrowsBtn";
 import FullScreenChart from "../../component/FullScreenChart/FullScreenChart";
 import style from "./Main.module.css";
@@ -79,9 +78,8 @@ const Main = ({ currencies }) => {
   };
 
   const handleSwitch = () => {
-    setArrowsClicked(!arrowsClicked);
-
     if (value.length !== 0 && toValue.length !== 0) {
+      setArrowsClicked(!arrowsClicked);
       let cur = currency;
       let val = value;
       let flg = flag;
@@ -110,6 +108,8 @@ const Main = ({ currencies }) => {
     currencies.map((currency) => {
       if (currency.currency === "rand (Republika Południowej Afryki)") {
         return (currency.currency = "rand (RPA)");
+      } else if (currency.currency === "won południowokoreański") {
+        return (currency.currency = "won (Korea Płd)");
       }
       if (currency.code !== "XDR") {
         return (
@@ -177,12 +177,6 @@ const Main = ({ currencies }) => {
   return (
     <main
       className={`${style.main} d-flex align-items-stretch justify-content-center`}>
-      <div
-        className={`${style.converter} d-flex flex-column flex-lg-row justify-content-between`}>
-        <From {...fromProps} />
-        <ArrowsBtn switch={handleSwitch} arrowsClicked={arrowsClicked} />
-        <To {...toProps} />
-      </div>
       {chartIsClicked ? (
         <FullScreenChart
           handleClick={handleClick}
@@ -190,7 +184,11 @@ const Main = ({ currencies }) => {
           chartIsClicked={chartIsClicked}
         />
       ) : (
-        ""
+        <div className={`${style.converter} d-flex flex-column flex-lg-row`}>
+          <CurrencySection {...fromProps} component="from" />
+          <ArrowsBtn switch={handleSwitch} arrowsClicked={arrowsClicked} />
+          <CurrencySection {...toProps} component="to" />
+        </div>
       )}
     </main>
   );

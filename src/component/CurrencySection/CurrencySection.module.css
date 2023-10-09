@@ -1,5 +1,11 @@
-.to {
+.containerForCurrency {
+  min-width: 330px;
   padding: 1rem;
+  flex: 1;
+  background-color: white;
+  border-radius: 2rem;
+}
+.currency {
   flex: 1;
 }
 .buttonDropdown {
@@ -41,12 +47,18 @@
 }
 .inputFrom {
   width: 100%;
-  padding: 5rem 1rem;
-  font-size: 4rem;
+  margin-top: 0.5rem;
+  padding: 4rem 1rem;
+  font-size: 3rem;
   border: none;
+  text-align: center;
+  background-color: white;
 }
 .inputFrom p {
   margin: 0;
+}
+.inputFrom:focus {
+  outline-color: #2451b7;
 }
 .inputFrom input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -55,4 +67,15 @@ input::-webkit-inner-spin-button {
 }
 .stats {
   flex-grow: 1;
+  padding: 2rem 1rem;
+}
+@media (min-width: 992px) {
+  .inputFrom {
+    padding: 5rem 1rem;
+    font-size: 4rem;
+    text-align: left;
+  }
+  .stats {
+    padding: 0;
+  }
 }

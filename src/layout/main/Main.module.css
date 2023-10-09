@@ -1,12 +1,10 @@
 .main {
   width: 100%;
-  position: relative;
   flex-grow: 1;
   overflow: hidden;
 }
 .converter {
-  width: 100%;
-  gap: 1rem;
+  flex: 1;
 }
 .chart {
   width: 100%;

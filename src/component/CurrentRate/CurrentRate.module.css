@@ -1,5 +1,6 @@
 .containerCurrentRate {
   margin-bottom: 2.5rem;
+  gap: 1rem;
 }
 .currentRate,
 .currentChange {
