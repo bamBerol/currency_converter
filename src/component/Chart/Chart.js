@@ -54,7 +54,7 @@ const Chart = (props) => {
 
         axios
           .get(
-            `http://api.nbp.pl/api/exchangerates/rates/a/${name}/${yearFromTodayDate}/${todayDate}/`
+            `https://api.nbp.pl/api/exchangerates/rates/a/${name}/${yearFromTodayDate}/${todayDate}/`
           )
           .then((res) => {
             if (res.status === 200) {

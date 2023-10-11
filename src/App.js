@@ -6,7 +6,7 @@ import style from "./App.module.css";
 function App() {
   const [currencies, setCurrencies] = useState([]);
   useEffect(() => {
-    axios.get(`http://api.nbp.pl/api/exchangerates/tables/a/`).then((res) => {
+    axios.get(`https://api.nbp.pl/api/exchangerates/tables/a/`).then((res) => {
       if (res.status === 200) {
         setCurrencies(res.data[0].rates);
       }
