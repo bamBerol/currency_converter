@@ -7,6 +7,12 @@ const CurrentRate = (props) => {
   const name = props.currency.split("").slice(0, 3).join("");
 
   useEffect(() => {
+    const percentChange = (latest) => {
+      let change = Number(props.value) - latest;
+      let percent = (change / latest) * 100;
+      setPercent(percent);
+    };
+
     if (name !== "Wyb") {
       axios
         .get(
@@ -19,12 +25,6 @@ const CurrentRate = (props) => {
         });
     }
   }, [name]);
-
-  const percentChange = (latest) => {
-    let change = Number(props.value) - latest;
-    let percent = (change / latest) * 100;
-    setPercent(percent);
-  };
 
   return (
     <>

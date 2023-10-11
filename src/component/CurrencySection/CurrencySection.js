@@ -11,7 +11,7 @@ const CurrencySection = (props) => {
     if (props.component === "from") {
       fromInputRef.current.focus();
     }
-  }, []);
+  }, [props.component]);
 
   return (
     <div
