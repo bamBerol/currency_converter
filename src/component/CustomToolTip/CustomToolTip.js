@@ -4,7 +4,7 @@ import style from "./CustomToolTip.module.css";
 const CustomToolTip = ({ active, payload, label }) => {
   const dateFormatter = () => {
     const dateRecived = new Date(label);
-    const formatDate = format(dateRecived, "eee dd/MM");
+    const formatDate = format(dateRecived, "eee dd-MM-yy");
     return formatDate;
   };
 

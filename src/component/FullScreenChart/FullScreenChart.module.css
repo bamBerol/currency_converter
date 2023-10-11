@@ -4,23 +4,50 @@
   border-radius: 2rem;
 }
 .title {
+  margin-bottom: 0;
   padding: 1rem 0;
   transform: translateX(300%);
   transition: transform 0.6s ease-in-out;
 }
-
+.periodOfTime {
+  width: 100%;
+  padding: 1rem 0;
+  color: #b0b0b4;
+  font-weight: 400;
+  transform: translateX(300%);
+  transition: transform 0.6s ease-in-out;
+}
+.periodOfTime div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+.periodOfTime div:last-child {
+  margin-right: 0;
+}
+.periodOfTime div:hover {
+  cursor: pointer;
+}
+.activePeriod {
+  background-color: #c3c3c752;
+  color: #2451b7;
+  border-radius: 1rem;
+}
 .bigChartContent {
   width: 100%;
   height: fit-content;
   transform: translateX(-100%);
   transition: transform 0.6s ease-in-out;
 }
-.titleOn {
+.titleOn,
+.chartOn,
+.periodOfTimeOn {
   transform: translateX(0);
 }
-.chartOn {
-  transform: translateX(0);
-}
+
 .backBtn {
   display: inline-block;
   padding: 1rem 1rem;
@@ -42,8 +69,4 @@
 .backBtn:hover {
   color: #2451b7;
   cursor: pointer;
-}
-@media (min-width: 992px) {
-  .bigChart {
-  }
 }

@@ -19,17 +19,51 @@ const Chart = (props) => {
 
   useEffect(() => {
     if (name !== "Wyb") {
-      axios
-        .get(
-          `https://api.nbp.pl/api/exchangerates/rates/a/${name}/last/10/?format=json`
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            dataSet(res.data.rates);
-          }
-        });
+      if (props.periodOfTime === undefined) {
+        axios
+          .get(
+            `https://api.nbp.pl/api/exchangerates/rates/a/${name}/last/10/?format=json`
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              dataSet(res.data.rates);
+            }
+          });
+      } else if (
+        props.periodOfTime !== undefined &&
+        Number(props.periodOfTime) <= 90
+      ) {
+        axios
+          .get(
+            `https://api.nbp.pl/api/exchangerates/rates/a/${name}/last/${props.periodOfTime}/?format=json`
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              dataSet(res.data.rates);
+            }
+          });
+      } else if (
+        props.periodOfTime !== undefined &&
+        Number(props.periodOfTime) > 90
+      ) {
+        let today = new Date();
+        let todayDate = format(today, "RRRR-MM-dd");
+        let yearFromToday = new Date();
+        yearFromToday.setFullYear(yearFromToday.getFullYear() - 1);
+        let yearFromTodayDate = format(yearFromToday, "RRRR-MM-dd");
+
+        axios
+          .get(
+            `http://api.nbp.pl/api/exchangerates/rates/a/${name}/${yearFromTodayDate}/${todayDate}/`
+          )
+          .then((res) => {
+            if (res.status === 200) {
+              dataSet(res.data.rates);
+            }
+          });
+      }
     }
-  }, [name]);
+  }, [name, props.periodOfTime]);
 
   const dataSet = (data) => {
     setCurrencyData(data);
@@ -40,11 +74,49 @@ const Chart = (props) => {
       return "";
     } else if (index % 2 === 0) {
       const dateRecived = new Date(date);
-      const formatDate = format(dateRecived, "dd/MM");
+      const formatDate = format(dateRecived, "dd-MM-yy");
       return formatDate;
     }
     return "";
   };
+
+  let intervalCount;
+
+  if (window.screen.width > 500) {
+    switch (Number(props.periodOfTime)) {
+      case 10:
+        intervalCount = 0;
+        break;
+      case 30:
+        intervalCount = 3;
+        break;
+      case 90:
+        intervalCount = 6;
+        break;
+      case 365:
+        intervalCount = 15;
+        break;
+      default:
+        intervalCount = 0;
+    }
+  } else if (window.screen.width <= 500) {
+    switch (Number(props.periodOfTime)) {
+      case 10:
+        intervalCount = 1;
+        break;
+      case 30:
+        intervalCount = 3;
+        break;
+      case 90:
+        intervalCount = 15;
+        break;
+      case 365:
+        intervalCount = 35;
+        break;
+      default:
+        intervalCount = 0;
+    }
+  }
 
   return (
     <>
@@ -85,6 +157,7 @@ const Chart = (props) => {
               axisLine={false}
               tickLine={false}
               tickFormatter={dateFormatter}
+              interval={intervalCount}
             />
             <CartesianGrid opacity={0.6} vertical={false} />
             <Tooltip content={<CustomToolTip />} />

@@ -1,24 +1,27 @@
 .title {
+  width: 100%;
   padding: 2rem 2rem;
 }
 .titleText {
   margin: 0 1rem;
 }
-.yen,
-.euro {
-  width: 2rem;
-  height: 2rem;
+
+.logo {
+  width: 100%;
+}
+.logo img {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 1rem;
 }
 .up,
 .down {
   width: 1.5rem;
   height: 1.5rem;
 }
-.yen,
 .up {
   color: rgb(0, 117, 0);
 }
-.euro,
 .down {
   color: rgb(194, 2, 2);
 }

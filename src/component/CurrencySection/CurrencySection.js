@@ -55,7 +55,7 @@ const CurrencySection = (props) => {
             ref={fromInputRef}
             type="text"
             placeholder="Wpisz kwotę"
-            className={`${style.inputFrom}`}
+            className={`${style.input}`}
             onChange={(e) => {
               props.handleInputChange(e);
               props.handleCurrencyConversion();
@@ -63,7 +63,7 @@ const CurrencySection = (props) => {
             value={props.inputValue}
           />
         ) : (
-          <div className={`${style.inputFrom}`}>
+          <div className={`${style.input}`}>
             <p>{props.toInputValue}</p>
           </div>
         )}
@@ -80,7 +80,7 @@ const CurrencySection = (props) => {
           )
         ) : props.toIsActive ? (
           <div
-            className={`${style.stats}`}
+            className={`${style.stats} d-flex flex-column justify-content-evenly`}
             onClick={() => props.handleClick("to")}>
             <CurrentRate currency={props.toCurrency} value={props.toValue} />
             <Chart currency={props.toCurrency} selectedComponent={null} />
